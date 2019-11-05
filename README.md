@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/AppFolioOnboarding/image-sharer-infiniteluke.svg?style=svg)](https://circleci.com/gh/AppFolioOnboarding/image-sharer-infiniteluke)
+
 # Ropes Project
 
 The Ropes Project is a repository that has everything you'll need to get started developing your onboarding Rails app. By the end, you'll have a full app deployed to Heroku that allows people to add images and share links to them with friends. Along the way you'll learn the basics of working with ERB templates, CSS, and Javascript as well as testing best practices.
