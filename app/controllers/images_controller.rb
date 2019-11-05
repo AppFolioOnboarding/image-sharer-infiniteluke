@@ -4,8 +4,13 @@ class ImagesController < ApplicationController
   end
 
   def create
-    img = Image.create(image_params)
-    redirect_to img
+    @image = Image.new(image_params)
+
+    if @image.save
+      redirect_to @image
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -13,7 +18,8 @@ class ImagesController < ApplicationController
   end
 
   private
-    def image_params
-      params.require(:image).permit(:url)
-    end
+
+  def image_params
+    params.require(:image).permit(:url)
+  end
 end

@@ -4,7 +4,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get a new page' do
     get new_image_path
     assert_response :ok
-    assert_select 'input'
+    assert_select 'h1', 'New Image'
   end
 
   test 'create redirects to show page' do
@@ -12,6 +12,13 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       post images_path, params: { image: { url: 'https://appfolio.com/image.png' } }
     end
     assert_redirected_to image_path(Image.last)
+  end
+
+  test 'shows new page if errors occur during save' do
+    assert_no_difference('Image.count') do
+      post images_path, params: { image: { url: 'Invalid!' } }
+    end
+    assert_select 'h1', 'New Image'
   end
 
   test 'show finds respective image' do
