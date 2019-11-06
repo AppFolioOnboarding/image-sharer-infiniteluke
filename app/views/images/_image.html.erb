@@ -1,1 +1,4 @@
-<img class="max-w-400 mb-5" src="<%= image.url %>" />
+<img class="max-w-400" src="<%= image.url %>" />
+<% if image.tags.size > 0 %>
+  <div class="m-3"><%= render image.tags %></div>
+<% end %>
