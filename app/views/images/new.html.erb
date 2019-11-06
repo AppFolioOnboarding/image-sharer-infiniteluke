@@ -1,5 +1,6 @@
 <h1>New Image</h1>
 <%= simple_form_for @image do |f| %>
   <%= f.input :url, as: :string  %>
+  <%= f.input :tag_list, input_html: {value: @image.tag_list.to_s} %>
   <%= f.button :submit %>
 <% end %>
