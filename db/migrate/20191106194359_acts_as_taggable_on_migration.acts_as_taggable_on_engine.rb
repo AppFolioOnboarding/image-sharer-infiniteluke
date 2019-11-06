@@ -5,6 +5,7 @@ else
   class ActsAsTaggableOnMigration < ActiveRecord::Migration; end
 end
 ActsAsTaggableOnMigration.class_eval do
+  # rubocop:disable Metrics/MethodLength
   def self.up
     create_table :tags do |t|
       t.string :name
@@ -26,8 +27,9 @@ ActsAsTaggableOnMigration.class_eval do
     end
 
     add_index :taggings, :tag_id
-    add_index :taggings, [:taggable_id, :taggable_type, :context]
+    add_index :taggings, %i[taggable_id taggable_type context]
   end
+  # rubocop:enable Metrics/MethodLength
 
   def self.down
     drop_table :taggings

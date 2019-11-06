@@ -11,8 +11,8 @@ gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'simple_form'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

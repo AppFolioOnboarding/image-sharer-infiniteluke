@@ -19,7 +19,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'lists tags on a image on index page' do
-    tags = ['tag1', 'tag2']
+    tags = %w[tag1 tag2]
     @image = Image.new(url: 'https://appfolio.com/image1.png')
     @image.tag_list = tags.join(',')
     @image.save
@@ -57,7 +57,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'show finds respective image' do
-    tags = ['tag1', 'tag2']
+    tags = %w[tag1 tag2]
     @image = Image.new(url: 'https://appfolio.com/image.png')
     @image.tag_list = tags.join(',')
     @image.save

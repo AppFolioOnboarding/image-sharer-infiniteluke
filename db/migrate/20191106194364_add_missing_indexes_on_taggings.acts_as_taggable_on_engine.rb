@@ -5,6 +5,7 @@ else
   class AddMissingIndexesOnTaggings < ActiveRecord::Migration; end
 end
 AddMissingIndexesOnTaggings.class_eval do
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def change
     add_index :taggings, :tag_id unless index_exists? :taggings, :tag_id
     add_index :taggings, :taggable_id unless index_exists? :taggings, :taggable_id
@@ -12,12 +13,11 @@ AddMissingIndexesOnTaggings.class_eval do
     add_index :taggings, :tagger_id unless index_exists? :taggings, :tagger_id
     add_index :taggings, :context unless index_exists? :taggings, :context
 
-    unless index_exists? :taggings, [:tagger_id, :tagger_type]
-      add_index :taggings, [:tagger_id, :tagger_type]
-    end
+    add_index :taggings, %i[tagger_id tagger_type] unless index_exists? :taggings, %i[tagger_id tagger_type]
 
-    unless index_exists? :taggings, [:taggable_id, :taggable_type, :tagger_id, :context], name: 'taggings_idy'
-      add_index :taggings, [:taggable_id, :taggable_type, :tagger_id, :context], name: 'taggings_idy'
-    end
+    return unless index_exists? :taggings, %i[taggable_id taggable_type tagger_id context], name: 'taggings_idy'
+
+    add_index :taggings, %i[taggable_id taggable_type tagger_id context], name: 'taggings_idy'
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
