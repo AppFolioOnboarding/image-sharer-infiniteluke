@@ -18,6 +18,18 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'lists tags on a image on index page' do
+    tags = %w[tag1 tag2]
+    @image = Image.new(url: 'https://appfolio.com/image1.png')
+    @image.tag_list = tags.join(',')
+    @image.save
+
+    get root_path
+    assert_response :ok
+    assert_select '[data-testid="tag"]', tags[0]
+    assert_select '[data-testid="tag"]', tags[1]
+  end
+
   test 'shows no images message on index if no images exist' do
     get root_path
     assert_response :ok
@@ -45,8 +57,14 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'show finds respective image' do
-    get image_path(Image.create!(url: 'https://appfolio.com/image.png'))
+    tags = %w[tag1 tag2]
+    @image = Image.new(url: 'https://appfolio.com/image.png')
+    @image.tag_list = tags.join(',')
+    @image.save
+    get image_path(@image)
     assert_response :ok
     assert_select 'img[src="https://appfolio.com/image.png"]'
+    assert_select '[data-testid="tag"]', tags[0]
+    assert_select '[data-testid="tag"]', tags[1]
   end
 end

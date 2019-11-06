@@ -3,5 +3,5 @@
 <%= link_to 'Create Image', new_image_path %>
 
 <section class="m-5 d-flex flex-column align-items-start">
-    <%= render(@images) || "No images."  %>
+    <%= render(partial: 'image', layout: 'image_wrapper', collection: @images, as: :image) || "No images."  %>
 </section>
