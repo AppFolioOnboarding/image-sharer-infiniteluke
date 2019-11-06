@@ -1,0 +1,7 @@
+<h1>Image Sharer App</h1>
+
+<%= link_to 'Create Image', new_image_path %>
+
+<section class="m-5 d-flex flex-column align-items-start">
+    <%= render(@images) || "No images."  %>
+</section>
