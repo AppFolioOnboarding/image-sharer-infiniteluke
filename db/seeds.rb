@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+(1..25).each do |num|
+  Image.create(url: "https://via.placeholder.com/468x300?text=Placeholder+Image #{num}")
+end
