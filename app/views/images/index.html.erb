@@ -1,7 +1,14 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
 <h1>Image Sharer App</h1>
 
 <%= link_to 'Create Image', new_image_path %>
 
 <section class="m-5 d-flex flex-column align-items-start">
-    <%= render(partial: 'image', layout: 'image_wrapper', collection: @images, as: :image) || "No images."  %>
+  <%= render(@images) || "No images."  %>
 </section>

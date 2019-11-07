@@ -1,4 +1,10 @@
-<img class="max-w-400" src="<%= image.url %>" />
-<% if image.tags.size > 0 %>
-  <div class="m-3"><%= render image.tags %></div>
-<% end %>
+<div class="max-w-400 mb-5 card">
+  <img src="<%= image.url %>" />
+  <% if image.tags.size > 0 %>
+    <div class="m-3"><%= render image.tags %></div>
+  <% end %>
+  <%= link_to 'Delete Image', image_path(image),
+            class: 'm-3 btn btn-danger',
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+</div>
