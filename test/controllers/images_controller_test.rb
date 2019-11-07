@@ -61,6 +61,26 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'section', 'No images.'
   end
 
+  test 'destroy should destroy image if it exists' do
+    image = Image.create!(url: 'https://appfolio.com/image.png')
+
+    assert_difference('Image.count', -1) do
+      delete image_path(image)
+    end
+
+    assert_redirected_to images_path
+    assert_equal 'Image successfully deleted', flash[:notice]
+  end
+
+  test 'destroy should show an alert notice if image does not exist' do
+    assert_no_difference('Image.count') do
+      delete image_path('does-no-exist')
+    end
+
+    assert_redirected_to images_path
+    assert_equal 'Image not found', flash[:alert]
+  end
+
   test 'should get a new page' do
     get new_image_path
 
