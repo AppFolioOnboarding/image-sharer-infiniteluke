@@ -32,6 +32,16 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'index should show tags as links' do
+    Image.create!(url: 'https://appfolio.com/image2.png', tag_list: 'tag1')
+
+    get root_path, params: { tag: 'tag1' }
+
+    assert_select 'section' do
+      assert_select 'a[href="/images?tag=tag1"]'
+    end
+  end
+
   test 'lists tags on a image on index page' do
     tags = %w[tag1 tag2]
     Image.new(url: 'https://appfolio.com/image1.png')

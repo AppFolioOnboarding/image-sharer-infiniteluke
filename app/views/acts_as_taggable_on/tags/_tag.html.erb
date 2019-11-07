@@ -1,1 +1,3 @@
-<span data-testid="tag" class="badge badge-pill badge-primary"><%= tag %></span>
+<%= link_to images_path(tag: tag.name) do %>
+  <span data-testid="tag" class="badge badge-pill badge-primary"><%= tag %></span>
+<% end  %>
