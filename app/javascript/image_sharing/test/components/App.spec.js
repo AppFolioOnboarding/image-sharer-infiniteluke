@@ -11,5 +11,6 @@ describe('<App />', () => {
     const wrapper = mount(<App />);
     assert(wrapper.contains('Tell us what you think'));
     assert(wrapper.exists(Feedback));
+    assert(wrapper.find('footer').contains('Copyright: AppFolio Inc. Onboarding'));
   });
 });

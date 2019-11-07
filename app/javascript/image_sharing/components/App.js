@@ -7,6 +7,7 @@ export default function App() {
     <div>
       <Header title="Tell us what you think" />
       <Feedback />
+      <footer className="text-center">Copyright: AppFolio Inc. Onboarding</footer>
     </div>
   );
 }
