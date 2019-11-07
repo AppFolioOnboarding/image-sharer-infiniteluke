@@ -1,6 +1,12 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.all.order(created_at: :desc)
+    @images = Image
+      .includes(:tags)
+      .order(created_at: :desc)
+      .yield_self do |images|
+        params[:tag].present? ? images.tagged_with(params[:tag]) : images
+      end
+      .all
   end
 
   def new
