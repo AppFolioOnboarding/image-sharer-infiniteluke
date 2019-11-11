@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_194364) do
+ActiveRecord::Schema.define(version: 2019_11_07_225558) do
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "comments", null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.text "url", null: false

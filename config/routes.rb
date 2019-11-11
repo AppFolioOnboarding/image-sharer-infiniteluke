@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'feedbacks#new'
-
+  root 'images#index'
+  resources :images, only: %i[new create show index destroy]
   resources :feedbacks, only: [:new]
 
   namespace :api do
